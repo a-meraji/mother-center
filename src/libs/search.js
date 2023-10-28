@@ -11,7 +11,7 @@ export async function search({ collectionName, filter, dispatch }) {
       const totalResultList = await pb
         .collection(collectionName)
         .getList(1, totalItems, {
-          filter,
+          filter, sort: '-created',
         });
       return totalResultList;
     } else {

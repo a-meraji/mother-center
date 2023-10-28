@@ -26,11 +26,13 @@ export default function Salesman() {
         filter,
         dispatch,
       });
+      
       const { items: transactionItems } = await search({
         collectionName: "transactions",
         filter,
         dispatch,
       });
+      console.log(transactionItems, phone, items)
       const { items: paychecksItems } = await search({
         collectionName: "paychecks",
         filter: `phone = "${phone}"`,
@@ -83,9 +85,12 @@ export default function Salesman() {
   }
 
   useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_WITHE_LIST, phone, "ASDASD")
+    if(!phone)return
+    const whites = "9033018426|9923385774|9300293418"
     if (
-      !process.env.NEXT_PUBLIC_WITHE_LIST.split("|").find(
-        (number) => number == pb.authStore.model?.phone
+      !whites.split("|").find(
+        (number) => number == phone
       )
     ) {
       location.href = "/auth/login";
